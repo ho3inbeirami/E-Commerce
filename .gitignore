@@ -7,7 +7,7 @@ db.sqlite3
 .html
 
 env
-.fuse_hidden0000d9ad00000002
+.fuse_hidden0000d9ad000000020
 product_module/migrations/0001_initial.py
 product_module/migrations/__pycache__/0001_initial.cpython-312.pyc
 
