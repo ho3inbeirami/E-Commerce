@@ -44,9 +44,14 @@ INSTALLED_APPS = [
     'ContactUs_module',
     'account_module',
     'site_module',
+    'article_module',
+    'polls',
+    
     
     # installed apps
     'django_render_partial',
+    'sorl.thumbnail',
+    
 ]
 
 MIDDLEWARE = [

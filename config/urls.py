@@ -25,6 +25,7 @@ urlpatterns = [
     path('',include('product_module.urls')),
     path('',include('ContactUs_module.urls')),
     path('',include('account_module.urls')),
+    path('',include('article_module.urls')),
     
 ]
 

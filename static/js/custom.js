@@ -29,3 +29,5 @@ function get_patent_id(parent_id) {
     document.getElementById('scrollComment').scrollIntoView({ behavior: 'smooth' })
 
 }
+
+
