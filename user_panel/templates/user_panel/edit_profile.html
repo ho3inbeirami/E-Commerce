@@ -1,0 +1,39 @@
+{% extends 'shared/_layot.html' %}
+{% block title %}User Panel{% endblock  %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                
+                {% if current_user.avatar %}
+                    <a class="thumbnail">
+                        <img src="{{current_user.avatar.url}}" alt="blog" style="width: 100%">
+                    </a>
+                    
+                {% else %}
+                    <img src="{% static 'images/blog/blog-one.jpg' %}" alt="blog" style="width: 100%">
+                {% endif %}
+                    
+                
+            </div>
+            {% include 'user_panel/user_panel_menu_component.html' %}
+        </div>
+
+        <div class="col-md-8">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock  %}
+    
