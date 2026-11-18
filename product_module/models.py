@@ -38,7 +38,7 @@ class Product(models.Model):
         ProductCategory, 
         related_name='product_categories')
     image= models.FileField(upload_to='images/products',verbose_name='image', null=True, blank=True)
-    brand = models.ForeignKey(Brand, on_delete = models.CASCADE, verbose_name='brand', null= True, blank= True)
+    brand = models.ForeignKey(Brand, on_delete = models.CASCADE, verbose_name='brand', null= True, blank= True, related_name='products')
     
     price = models.IntegerField(verbose_name='price')
     short_description = models.CharField(max_length=400, null= True)

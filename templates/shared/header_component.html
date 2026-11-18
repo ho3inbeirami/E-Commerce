@@ -33,14 +33,14 @@
 
                 <div class="col-sm-8 header-middle-menu">
                     <div class="shop-menu pull-left">
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav" >
 
                             {% if  request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
                                     <li><a href="/admin"><i class="fa fa-user"></i> Admin </a></li>
                                 {% endif %}
                                 
-                                <li><a href="#"><i class="fa fa-user"></i> User Panel </a></li> 
+                                <li><a href="{% url 'user_panel' %}"><i class="fa fa-user"></i> User Panel </a></li> 
                                 <li><a href="#"><i class="fa fa-shopping-cart"></i> Shopping Cart </a></li> 
                                 <li><a href="{% url 'logout_page' %}"><i class="fa fa-sign-out"></i> Logout </a></li>  
                                 

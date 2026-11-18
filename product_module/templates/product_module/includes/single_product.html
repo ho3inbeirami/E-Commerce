@@ -2,7 +2,13 @@
     <div class="product-image-wrapper">
         <div class="single-products">
             <div class="productinfo text-center">
-                <img src={{product.image.url}} alt="">
+                
+                {% if product.image %}
+                    <img src={{product.image.url}} alt="">
+                {% else %}
+                    <img src="" alt="">
+                {% endif %}
+                    
                 <h2>{{product.title}} </h2>
                 <p> {{product.price}} </p>
                 {% comment %} <a href="{% url "product_detail_page" product.slug  %}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>افزودن به سبـد خریـد</a> {% endcomment %}
