@@ -13,3 +13,10 @@ product_module/migrations/__pycache__/0001_initial.cpython-312.pyc
 
 article_module/migrations/*
 uploads/*
+
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+uploads/*

@@ -31,3 +31,16 @@ function get_patent_id(parent_id) {
 }
 
 
+function SendDataFilterPrice() {
+    var start_price = $("#sl2").val().split(',')[0]
+    var end_price = $("#sl2").val().split(',')[1]
+    $('#start_price').val(start_price)
+    $('#end_price').val(end_price)
+    console.log(start_price)
+    
+}
+
+
+function FillPage(page){
+    $('#').val(page)
+}

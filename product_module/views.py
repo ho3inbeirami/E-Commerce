@@ -6,27 +6,30 @@ from django.views.generic import ListView, DeleteView
 from . import models
 from django.db.models import Count
 # Create your views here.
-
-
 class ProductListView(ListView):
     model = models.Product
     template_name = 'product_module/product_list.html'
     context_object_name ='products_list'
     
-    paginate_by =2
+    paginate_by =1
+
 
     def get_queryset(self):
+        queryset = super().get_queryset()
         category = self.kwargs.get('category')
         brand = self.kwargs.get('brand')
-        queryset = super().get_queryset()
+        start_price = self.request.GET.get('start_price')
+        end_price = self.request.GET.get('end_price')
+        if start_price:
+            queryset = queryset.filter(price__gte = start_price)
+        if end_price:
+            queryset = queryset.filter(price__lte = end_price)
         if category:
             queryset = queryset.filter(category__url_title = category)
         if brand:
             queryset = queryset.filter(brand__title = brand)
         queryset = queryset  # TODO
         return queryset
-
-
 
 
 def product_list(request):
@@ -37,8 +40,6 @@ def product_list(request):
         'AVG':Product.objects.aggregate(Avg('price'))
         }
     return render(request, 'product_module/product_list.html',context=context)
-
-
 
 class ProductDetailView(DeleteView):
     template_name = 'product_module/product_detail.html'
@@ -52,7 +53,6 @@ def product_detail(request, slug ):
         }
     return render(request, 'product_module/product_detail.html',context=context)
 
-
 def product_categories_component(request):
     context = {
         'categories': ProductCategory.objects.all()
@@ -60,10 +60,11 @@ def product_categories_component(request):
     return render(request, 'product_module/category_component.html', context )
 
 
-
-
 def product_brand_component(request):
     context = {
         'brands': Brand.objects.all().annotate(product_count = Count('products'))
     }
     return render(request, 'product_module/brands_component.html', context )
+
+
+

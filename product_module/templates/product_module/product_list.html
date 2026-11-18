@@ -14,17 +14,32 @@
 						{% render_partial 'product_module.views.product_categories_component' %}
 						{% render_partial 'product_module.views.product_brand_component' %}
 
-						
-
-
 						<div class="price-range"><!--price-range-->
 							<h2>Price Filter</h2>
 							<div class="well">
-								<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1000000" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
+								<input 
+								type="text" 
+								class="span2" 
+								value="0,100000" 
+								data-slider-min="0" 
+								data-slider-max="1000" 
+								data-slider-step="100" 
+								data-slider-value="[0,100000]" 
+								id="sl2" >
+								<br />
 								<b>1.000.000 rial</b> <b class="pull-left">0 rial</b>
 							</div>
 						</div><!--/price-range-->
-						
+
+						<form action="" method="get">
+							<input type="hidden" name="page" id='page' value="{{page_obj.number}}" >
+							<input type="hidden" name="start_price" id='start_price' value >
+
+							<input type="hidden" name="end_price"  id='end_price' value >
+							<button type="submit" onclick='SendDataFilterPrice()' >Submit</button>
+						</form>
+
+
 						<div class="shipping text-center"><!--shipping-->
 							<img src="{% static 'images/home/shipping.jpg' %}" alt="" />
 						</div><!--/shipping-->

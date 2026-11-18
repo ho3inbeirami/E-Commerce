@@ -24,7 +24,7 @@ body {
   /* background:; */
   position: relative;
   font-weight: normal;
-  direction: rtl;
+  direction: ltr;
 }
 
 ul li {
