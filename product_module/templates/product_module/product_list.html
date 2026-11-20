@@ -24,7 +24,7 @@
 								data-slider-min="0" 
 								data-slider-max="1000" 
 								data-slider-step="100" 
-								data-slider-value="[0,100000]" 
+								data-slider-value="[0,10000000000]" 
 								id="sl2" >
 								<br />
 								<b>1.000.000 rial</b> <b class="pull-left">0 rial</b>
@@ -41,7 +41,11 @@
 
 
 						<div class="shipping text-center"><!--shipping-->
-							<img src="{% static 'images/home/shipping.jpg' %}" alt="" />
+							
+							{% for banner in banners %}
+								<a href= "{{banner.url}}"><img src="{{banner.image.url}}" alt=""></a>
+							{% endfor %}
+								
 						</div><!--/shipping-->
 
 						

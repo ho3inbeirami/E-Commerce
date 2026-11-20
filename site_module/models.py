@@ -51,3 +51,24 @@ class FooterBoxLink(models.Model):
         verbose_name_plural = 'Footer links'
         
         
+
+
+
+class Banner(models.Model):
+    class PositionChoices(models.TextChoices):
+        product_list = 'product_list', 'product list page'
+        product_detail = 'product_detail', 'product detail page'
+        
+    title = models.CharField(max_length=200,verbose_name='banner title')
+    url = models.URLField(max_length=200,verbose_name='banner url', null=True, blank=True)
+    image = models.ImageField(upload_to='images/banner',verbose_name='banner image')
+    position = models.CharField(max_length=200,choices=PositionChoices.choices,verbose_name='banner position')
+    is_active = models.BooleanField(default=True, verbose_name='Active de active')
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        db_table= 'banners'
+        verbose_name = 'banner'
+        verbose_name_plural = 'banners'
+        

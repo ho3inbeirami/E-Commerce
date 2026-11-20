@@ -5,15 +5,20 @@ from django.db.models import Avg
 from django.views.generic import ListView, DeleteView
 from . import models
 from django.db.models import Count
+from site_module.models import Banner
 # Create your views here.
 class ProductListView(ListView):
     model = models.Product
     template_name = 'product_module/product_list.html'
     context_object_name ='products_list'
     
-    paginate_by =1
+    paginate_by =3
 
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        context['banners'] = Banner.objects.filter(is_active=True, position__iexact=Banner.PositionChoices.product_list)
+        return context
+    
     def get_queryset(self):
         queryset = super().get_queryset()
         category = self.kwargs.get('category')
@@ -45,6 +50,11 @@ class ProductDetailView(DeleteView):
     template_name = 'product_module/product_detail.html'
     model = Product
     context_object_name = 'product'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        context['banners'] = Banner.objects.filter(is_active=True, position__iexact=Banner.PositionChoices.product_detail)
+        return context
 
 def product_detail(request, slug ):
     product = Product.objects.get(slug=slug)
