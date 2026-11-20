@@ -2,9 +2,8 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
 from django.utils.text import slugify
-
+from account_module.models import User
 # Create your models here.
-
 
 class ProductCategory(models.Model):
     title = models.CharField(max_length=200,verbose_name='عنوان')
@@ -65,10 +64,6 @@ class Product(models.Model):
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
 
-
-
-
-
 class ProductTags(models.Model):
     title = models.CharField(max_length=200,verbose_name='عنوان')
     product = models.ForeignKey(Product , on_delete=models.CASCADE)
@@ -79,3 +74,31 @@ class ProductTags(models.Model):
         
     def __str__(self):
         return self.title
+    
+    
+    
+class ProductVisit(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='product')
+    ip = models.CharField(max_length=100,verbose_name='IP')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User', blank=True, null=True)
+    
+    def __str__(self):
+        return f'{self.product}/{self.ip}'
+    
+    
+    class Meta:
+        verbose_name = 'product visit'
+        verbose_name_plural = 'products visit'
+        
+        
+        
+class ProductGallery(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Product',related_name='ProductGallery_set')
+    image = models.ImageField(upload_to='images/gallery', verbose_name='image')
+    
+    def __str__(self):
+        return self.product.title
+    
+    class Meta:
+        verbose_name = 'Gallery'
+        verbose_name_plural = 'Galleries'

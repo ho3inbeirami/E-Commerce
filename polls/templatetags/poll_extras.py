@@ -24,3 +24,10 @@ def date(value):
 @register.filter
 def get_range(value):
     return range(value)
+
+
+
+@register.filter(name = 'tree_digits_format')
+def tree_digits_format(value):
+    
+    return '{:,}'.format(value)

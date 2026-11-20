@@ -44,3 +44,7 @@ function SendDataFilterPrice() {
 function FillPage(page){
     $('#').val(page)
 }
+
+function replaecImage(imageurl){ 
+    $('#mainImage').attr('src', imageurl)
+}

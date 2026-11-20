@@ -3,8 +3,8 @@ from django.views .generic import TemplateView
 from site_module.models import SiteSettings,FooterBox,FooterBoxLink
 from . import models
 from utils.grouped_list import group_list
-
-from product_module.models import Product
+from django.db.models import Count
+from product_module.models import Product,ProductVisit,Brand
 
 # def index_page(request):
 #     return render(request,'home_module/index.html')
@@ -16,8 +16,12 @@ class HomeView(TemplateView):
         context =  super().get_context_data(**kwargs)
         sliders = models.Slider.objects.filter(is_active=True)
         populated_products = Product.objects.filter(is_active=True)[:12]
+        most_visited_products = ProductVisit.objects.filter(product__is_active=True,product__is_delete =False).annotate(visit_count=Count('product')).order_by('-visit_count')[:12]
         context['populated_products'] = group_list(populated_products,4)
+        context['most_visited_products'] = group_list(most_visited_products,4)
         context['sliders'] = sliders
+        
+        context['brands'] =Brand.objects.filter(is_active = True)
         return context
 
 def header_component(request):

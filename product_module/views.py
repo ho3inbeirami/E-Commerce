@@ -6,6 +6,9 @@ from django.views.generic import ListView, DeleteView
 from . import models
 from django.db.models import Count
 from site_module.models import Banner
+from product_module.models import ProductVisit
+from utils.get_request_ip import get_client_ip
+from utils.grouped_list import group_list
 # Create your views here.
 class ProductListView(ListView):
     model = models.Product
@@ -54,6 +57,24 @@ class ProductDetailView(DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs) 
         context['banners'] = Banner.objects.filter(is_active=True, position__iexact=Banner.PositionChoices.product_detail)
+        ip = get_client_ip(self.request)
+        product = context['product']
+        gallery_images = list(product.ProductGallery_set.all())
+        context['gallery_images'] = group_list(gallery_images, 3)
+        
+        
+        user_id =None
+        if self.request.user:
+            user_id = self.request.user.id
+            
+        has_been_visited = ProductVisit.objects.filter(ip = ip , product =product).exists()
+        if not has_been_visited:
+            ProductVisit(ip=ip , product = product, user_id =user_id).save()
+            
+            
+        
+        
+        context['relational_products'] = group_list(list(product.brand.products.exclude(id=product.id))[:12], 3)
         return context
 
 def product_detail(request, slug ):
