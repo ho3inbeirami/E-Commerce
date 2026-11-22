@@ -1,0 +1,18 @@
+{% extends 'shared/_layot.html' %}
+{% load static %}
+{% load poll_extras %}
+{% load render_partial %}
+
+
+{% block title %}
+    shopping cart
+{% endblock  %}
+    
+
+{% block content %}
+
+
+{% render_partial 'order_module.views.CartComponent'  %}
+
+
+{% endblock  %}

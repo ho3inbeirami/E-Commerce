@@ -1,0 +1,83 @@
+{% load poll_extras %}
+
+<div id = "cartComponent">
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li class="active">payment</li>
+            </ol>
+        </div><!--/breadcrums-->
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Products</td>
+                        <td class="description"></td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Count</td>
+                        <td class="total">Total Price</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for detail in details %}
+                        <tr>
+                            <td class="cart_product">
+                                <a href=""><img width="85" heigh="85" src='{{detail.product.image.url}}'' alt=""></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="">{{detail.product.title}}</a></h4>
+                                <p>Identifier:{{detail.product.id}}</p>
+                            </td>
+                            <td class="cart_price">
+                                <p>{{detail.product.price|tree_digits_format}} Rails </p>
+                            </td>
+                            <td class="cart_quantity">
+                                <div class="cart_quantity_button">
+                                    <a class="cart_quantity_up" onclick="changeCountItem({{detail.product.id}},+1)"> + </a>
+                                    <input class="cart_quantity_input" type="text" name="quantity" value="{{detail.count}}" autocomplete="off" size="2">
+                                    <a class="cart_quantity_down" onclick="changeCountItem({{detail.product.id}},-1)"> - </a>
+                                </div>
+                            </td>
+                            <td class="cart_total">
+                                <p class="cart_total_price">{{detail.get_total_price|tree_digits_format}} </p>
+                            </td>
+                            <td class="cart_delete">
+                                <a class="cart_quantity_delete" onclick ="removeItem({{detail.product.id}})"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section id="do_action">
+    <div class="container">
+        <div class="heading">
+            <h3>نهایی کردن سفارش یا ادامه خریـد ؟! </h3>
+            <p>در صورتیکـه کوپن خریـد و یا کد تخفیف داریـد میتوانید از آن استفاده نمایید | با استفاده از بخش مربوطه هزینه حمل و نقل خود را محاسبـه نمایید</p>
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="total_area">
+                    <ul>
+                        <li>Total shopping cart: {{total|tree_digits_format}}</li>
+                    </ul>
+                        <a class="btn btn-default update" href="shop.html"> Update Shopping Cart</a>
+                        <a class="btn btn-default check_out" href="checkout.html">Payment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+

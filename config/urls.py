@@ -27,6 +27,7 @@ urlpatterns = [
     path('',include('account_module.urls')),
     path('',include('article_module.urls')),
     path('',include('user_panel.urls')),
+    path('',include('order_module.urls')),
     
 ]
 

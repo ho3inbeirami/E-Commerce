@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'article_module',
     'polls',
     'user_panel',
+    'order_module',
     
     
     # installed apps

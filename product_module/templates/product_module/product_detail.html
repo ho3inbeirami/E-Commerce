@@ -78,18 +78,18 @@
 										<span>Price : {{product.price}} rial</span>
 									</span>
 									<span>
-										<label>تعداد :</label>
-										<input type="text" value="3" class="search_box">
-										<button type="button" class="btn btn-fefault cart">
-											<i class="fa fa-shopping-cart"></i>
-											افـزودن به سبـد خریـد
+										<label>Count: </label>
+										<input type="number" value="3" min="1" id ="ProductCount",class="search_box">
+										<button  onclick ="AddToShoppingCart({{product.id}})" class="btn btn-fefault cart">
+											<i class="en en-shopping-cart"></i>
+											add to shopping cart
 										</button>
 									</span>
 								</div>
 								<div>
-									<p><b>موجـودی :</b> در انبـار موجود می باشد</p>
+									<p><b>Inventory: </b>Available In Stock</p>
 									
-									<p><b>برنـد :</b> {{product.brand.title}} </p>
+									<p><b>Brand: </b> {{product.brand.title}} </p>
 								</div>
 								
 							</div><!--/product-information-->
@@ -194,7 +194,8 @@
 							<div class="carousel-inner">
 								
 								{% for group in relational_products %}
-								<div class="item active">	
+								<div class="item 
+								{% if forloop.first %}active{% endif %} ">	
 									
 									{% for item in group %}
 										<div class="col-sm-4">

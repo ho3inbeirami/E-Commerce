@@ -1752,30 +1752,32 @@ h2.title {
 #cart_items .cart_info .cart_description h4 a {
   color: #363432;
   font-family: 'BYekan', sans-serif;
-  font-size: 16pt;
+  font-size: 1rem;
   font-weight: normal;
 
 }
 
 #cart_items .cart_info .cart_description p {
-  color: #696763
+  color: #696763;
+  font-size: 1.2rem;
 }
 
 
 #cart_items .cart_info .cart_price p {
   color: #696763;
-  font-size: 18px
+  font-size: 1rem;
 }
 
 
 #cart_items .cart_info .cart_total_price {
   color: #FE980F;
   font-size: 16pt;
+  margin-left: 12px;
 }
 
 .cart_product {
   display: block;
-  margin: 15px 25px 10px -50px;
+  margin: 15px 25px 10px 10px;
 }
 
 .cart_quantity_button a {
@@ -1803,7 +1805,7 @@ h2.title {
 
 .cart_delete {
   display: block;
-  margin-right: -12px;
+  margin-right: 12px;
   overflow: hidden;
 }
 
