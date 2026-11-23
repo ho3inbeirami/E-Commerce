@@ -35,8 +35,12 @@ class RegisterView(View):
                 user.set_password(password)
                 user.save()
                 # todo : send email activation code
-                                
-                email_service.Send_email('activation Email',user.email, {'user':user} , 'emails/active-account.html' )
+                
+                kwargs= {'subject':'activation Email',
+                        'to':user.email,
+                        'context':{'user':user.get_full_name()} ,
+                        'template_name':'emails/active-account.html' }
+                email_service.Send_email.apply_async(kwargs = kwargs)
 
                 
                 return HttpResponseRedirect(reverse('login_page'))
@@ -119,7 +123,12 @@ class ForgetPassWordView(View):
         if user:
             user.email_active_code
             # to do send Email To user
-            email_service.Send_email('activation Email',user.email, {'user':user} , 'emails/forget-pass.html' )
+            kwargs= {'subject':'activation Email',
+                        'to':user.email,
+                        'context':{'user':user.get_full_name()} ,
+                        'template_name':'emails/forget-pass.html' }
+            
+            email_service.Send_email.apply_async(kwargs =kwargs)
             return render(request , 'account_module/forget_pass_page.html',{'form':form,'message':'Email Was sent to user'})
         else:
             return HttpResponseRedirect(reverse('register_page'))
