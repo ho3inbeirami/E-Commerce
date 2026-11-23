@@ -10,7 +10,6 @@ An e-commerce project with a Products REST API, fully dockerized and served on p
 - [Getting Started with Docker](#-getting-started-with-docker)
 - [API Documentation](#-api-documentation)
 - [Contributing](#-contributing)
-- [License](#-license)
 - [Author](#-author)
 
 ---
