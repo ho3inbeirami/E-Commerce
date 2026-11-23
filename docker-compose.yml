@@ -1,0 +1,31 @@
+services:
+  eshop:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: eshop_web_app_container
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    command: python manage.py runserver 0.0.0.0:8000
+
+    depends_on:
+      - redis
+      - celery
+
+  redis:
+    image: redis:7.0.11-alpine 
+    container_name: redis_container
+
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile_celery
+    container_name: celery_container
+    command: celery -A config.celery_base  worker -l INFO -Q taskQueue
+    depends_on:
+      - redis
+    volumes:
+      - .:/app
