@@ -28,6 +28,8 @@ urlpatterns = [
     path('',include('article_module.urls')),
     path('',include('user_panel.urls')),
     path('',include('order_module.urls')),
+    path('api/',include('API_module.urls')),
+    path("api-auth/", include("rest_framework.urls")),
     
 ]
 

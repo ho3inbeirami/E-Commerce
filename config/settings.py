@@ -48,11 +48,13 @@ INSTALLED_APPS = [
     'polls',
     'user_panel',
     'order_module',
+    'API_module',
     
     
     # installed apps
     'django_render_partial',
     'sorl.thumbnail',
+    'rest_framework',
     
 ]
 

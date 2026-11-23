@@ -8,3 +8,4 @@ pillow
 sorl-thumbnail
 persiantools
 redis
+djangorestframework
